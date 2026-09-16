@@ -14,7 +14,8 @@ class UpdateProductRequest extends FormRequest
 
     public function rules(): array
     {
-        $productId = $this->route('product')?->id ?? $this->route('product');
+        $product = $this->route('product');
+        $productId = $product instanceof \App\Models\Product ? $product->id : $product;
 
         return [
             'name'           => ['sometimes', 'required', 'string', 'max:255'],

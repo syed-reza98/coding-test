@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index(Request $request): AnonymousResourceCollection
     {
-        $query = Product::query()->with('category');
+        $query = Product::query();
 
         // Search by name or SKU
         if ($search = $request->input('search')) {
@@ -79,7 +79,7 @@ class ProductController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data'    => new ProductResource($product->load('category')),
+            'data'    => new ProductResource($product),
         ]);
     }
 
@@ -93,7 +93,7 @@ class ProductController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Product updated successfully',
-            'data'    => new ProductResource($product->fresh('category')),
+            'data'    => new ProductResource($product->fresh()),
         ]);
     }
 

@@ -20,7 +20,6 @@ class ProductResource extends JsonResource
             'status'         => $this->status,
             'created_at'     => $this->created_at?->toISOString(),
             'updated_at'     => $this->updated_at?->toISOString(),
-            'category_info'  => new CategoryResource($this->whenLoaded('category')),
         ];
     }
 }
