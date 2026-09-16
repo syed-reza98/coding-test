@@ -180,7 +180,7 @@ php artisan test
 - [x] **Dedicated `OrderService`**: Clean service layer separating business transactions from controllers.
 - [x] **Concurrency & Race Condition Prevention**: InnoDB row-level locking via `lockForUpdate()`.
 - [x] **Automatic Stock Restoration**: `POST /orders/{id}/cancel` safely replenishes stock in a transaction.
-- [x] **Comprehensive Automated Feature Tests**: 9 PHPUnit tests verifying authorization, order creation, and stock logic.
+- [x] **Comprehensive Automated Feature Tests**: 15 PHPUnit tests (53 assertions) and 3 Vitest frontend test suites verifying authorization, order creation, and stock logic.
 - [x] **Debounced Search**: 350ms debounced searching across products, customers, and orders.
 - [x] **Role-Based Navigation & UI**: Admin vs Staff role badges; deletion buttons protected on both backend policies and frontend UI.
 - [x] **Order Invoice & Printable View**: Dedicated printable invoice page with `window.print()` layout at `/orders/[id]`.
