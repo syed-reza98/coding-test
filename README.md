@@ -84,19 +84,26 @@ Run the backend feature test suite covering authentication, role permissions, an
 cd backend
 php artisan test
 ```
-* **Results**: 9/9 tests pass with 21 assertions, testing:
-  * Order creation with automatic stock deduction.
+* **Results**: 15/15 tests pass with 53 assertions, testing:
+  * Public storefront catalog browsing, customer checkout, and concurrency stockouts.
+  * Internal order creation with automatic stock deduction.
   * Server-side verified calculation (rejecting faked client totals).
-  * Out-of-stock prevention (HTTP 409).
+  * Out-of-stock prevention (HTTP 409 Conflict).
   * Order cancellation and automatic inventory restoration.
   * Staff deletion restriction (HTTP 403 Forbidden).
   * Admin deletion allowance (HTTP 200 OK + Soft Delete).
+  * Product and customer CRUD with unique validation.
 
 ---
 
 ## 4. REST API Endpoint Documentation (`/api/v1`)
 
-All endpoints (except `POST /auth/login`) require the `Authorization: Bearer <token>` header.
+### Public Storefront (Customer Catalog & Checkout)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/storefront/products` | Public catalog with live stock status and category filters | Public |
+| `GET` | `/api/v1/storefront/categories` | Public categories for navigation tabs | Public |
+| `POST` | `/api/v1/storefront/orders` | Customer checkout with **pessimistic lock**, auto customer record, and stock deduction | Public |
 
 ### Authentication
 | Method | Endpoint | Description | Access |

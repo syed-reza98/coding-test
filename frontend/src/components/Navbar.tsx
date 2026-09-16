@@ -27,6 +27,17 @@ export const Navbar = ({ title, subtitle }: NavbarProps) => {
           </div>
         )}
 
+        <a
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 transition-colors"
+          title="Open Public Customer Storefront in new tab"
+        >
+          <span>Storefront</span>
+          <span className="text-[10px] text-indigo-600 font-bold">↗</span>
+        </a>
+
         <div className="text-right">
           <p className="text-xs font-semibold text-slate-800">{user?.email}</p>
           <p className="text-[11px] text-slate-400 capitalize">{user?.role} Account</p>

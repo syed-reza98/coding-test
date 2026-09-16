@@ -19,6 +19,11 @@ Route::prefix('v1')->group(function () {
     // Public authentication routes
     Route::post('auth/login', [AuthController::class, 'login']);
 
+    // Public Customer Storefront (Catalog & Checkout)
+    Route::get('storefront/products', [\App\Http\Controllers\Api\StorefrontController::class, 'products']);
+    Route::get('storefront/categories', [\App\Http\Controllers\Api\StorefrontController::class, 'categories']);
+    Route::post('storefront/orders', [\App\Http\Controllers\Api\StorefrontController::class, 'checkout']);
+
     // Protected API routes
     Route::middleware('auth:sanctum')->group(function () {
 
