@@ -429,11 +429,17 @@ export default function ProductsPage() {
                   <input
                     type="text"
                     required
+                    list="category-options"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    placeholder="Category name"
+                    placeholder="Select or type category"
                     className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
+                  <datalist id="category-options">
+                    {categories.map((c) => (
+                      <option key={c.id} value={c.name} />
+                    ))}
+                  </datalist>
                 </div>
               </div>
 

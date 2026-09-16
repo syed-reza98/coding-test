@@ -63,7 +63,15 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request): JsonResponse
     {
-        $product = Product::create($request->validated());
+        $validated = $request->validated();
+        if (empty($validated['category_id']) && !empty($validated['category'])) {
+            $cat = \App\Models\Category::where('name', $validated['category'])->first();
+            if ($cat) {
+                $validated['category_id'] = $cat->id;
+            }
+        }
+
+        $product = Product::create($validated);
 
         return response()->json([
             'success' => true,
@@ -88,7 +96,15 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product): JsonResponse
     {
-        $product->update($request->validated());
+        $validated = $request->validated();
+        if (isset($validated['category']) && empty($validated['category_id'])) {
+            $cat = \App\Models\Category::where('name', $validated['category'])->first();
+            if ($cat) {
+                $validated['category_id'] = $cat->id;
+            }
+        }
+
+        $product->update($validated);
 
         return response()->json([
             'success' => true,
